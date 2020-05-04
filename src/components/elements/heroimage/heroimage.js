@@ -1,24 +1,41 @@
 import React from "react";
 import axios from "axios";
-import {
-  API_URL,
-  API_KEY,
-  IMAGE_BASE_URL,
-  BACKDROP_SIZE,
-  POSTER_SIZE,
-} from "../../../config";
-//  image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImages[0].backdrop_path}`}
-// const useHeroimage = () => {
+import Swiper from "react-id-swiper";
+import "./heroimage.scss";
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../../config";
 
-// };
 const Heroimage = ({ images }) => {
-  //useHeroimage();
-  console.log(images);
-  const image = `${IMAGE_BASE_URL}${BACKDROP_SIZE}${images[0]}`;
+  const params = {
+    observer: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      type: "progressbar",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  };
+
   return (
-    <div className="image-container">
-      <img src={image} />
-    </div>
+    <Swiper {...params}>
+      {images.map((photo, i) => {
+        return (
+          <div key={i} className="imagediv-container">
+            <div className="heroimage-container">
+              <img
+                className="heroimage"
+                src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${photo}`}
+              />
+            </div>
+          </div>
+        );
+      })}
+    </Swiper>
   );
 };
 

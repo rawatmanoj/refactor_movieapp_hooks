@@ -23,11 +23,13 @@ const useHeroimage = () => {
         `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
 
-      const posterImages = res.data.results.map((result, i) => {
-        return result.poster_path;
+      const filterImages = res.data.results.filter((result, i) => {
+        if (i < 5) {
+          return result.backdrop_path;
+        }
       });
 
-      console.log(res.data.results[0].poster_path);
+      const posterImages = filterImages.map((res) => res.backdrop_path);
 
       setHeroimage(posterImages);
     })();
@@ -43,7 +45,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <Header onSearch={useSearch} />
-      <Heroimage images={images} />
+      {images ? <Heroimage images={images} /> : null}
     </div>
   );
 };
