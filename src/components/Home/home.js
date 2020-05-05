@@ -16,12 +16,24 @@ const useSearch = (data) => {
 
 const useHeroimage = () => {
   const [Heroimage, setHeroimage] = useState([]);
+  const [genres, setGenre] = useState([]);
 
   useEffect(() => {
     (async () => {
       const res = await axios(
         `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-      );
+      ).catch((err) => console.log(err));
+
+      const genres = await axios(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`
+      ).catch((err) => console.log(err));
+
+      const genresList = genres.data.genres.map((genre) => {
+        return genre;
+      });
+
+      setGenre(genresList);
+      //console.log(genresList);
 
       const posterImages = res.data.results.filter((result, i) => {
         if (i < 5 && result.backdrop_path !== null) {
@@ -29,21 +41,24 @@ const useHeroimage = () => {
         }
       });
       console.log(res);
+
       setHeroimage(posterImages);
     })();
   }, []);
-  return Heroimage;
+  return { Heroimage, genres };
 };
 
 const Home = () => {
-  const images = useHeroimage();
+  //const genres = getGenres();
+  const images = useHeroimage().Heroimage;
+  const genres = useHeroimage().genres;
 
-  //console.log(Heroimages);
+  //console.log(genres);
 
   return (
     <div className="home-container">
       <Header onSearch={useSearch} />
-      {images ? <Heroimage images={images} /> : null}
+      {images ? <Heroimage images={images} genres={genres} /> : null}
     </div>
   );
 };
