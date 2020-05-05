@@ -23,14 +23,12 @@ const useHeroimage = () => {
         `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
 
-      const filterImages = res.data.results.filter((result, i) => {
-        if (i < 5) {
-          return result.backdrop_path;
+      const posterImages = res.data.results.filter((result, i) => {
+        if (i < 5 && result.backdrop_path !== null) {
+          return result;
         }
       });
-
-      const posterImages = filterImages.map((res) => res.backdrop_path);
-
+      console.log(res);
       setHeroimage(posterImages);
     })();
   }, []);

@@ -1,11 +1,14 @@
 .imagediv-container {
   .heroimage-container {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
-    display: flex;
+    color: white;
     height: 100vh;
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+    h1 {
+      margin-top: auto;
+      margin-left: 100px;
+    }
     .heroimage {
       z-index: -1;
       width: 100%;

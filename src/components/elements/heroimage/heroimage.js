@@ -5,6 +5,7 @@ import "./heroimage.scss";
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../../config";
 
 const Heroimage = ({ images }) => {
+  console.log(images);
   const params = {
     observer: true,
     autoplay: {
@@ -23,14 +24,17 @@ const Heroimage = ({ images }) => {
 
   return (
     <Swiper {...params}>
-      {images.map((photo, i) => {
+      {images.map((photo) => {
         return (
-          <div key={i} className="imagediv-container">
-            <div className="heroimage-container">
-              <img
-                className="heroimage"
-                src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${photo}`}
-              />
+          <div key={photo.id} className="imagediv-container">
+            <div
+              style={{
+                background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center center / cover no-repeat, 
+                url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${photo.backdrop_path}) center top / cover no-repeat rgb(255, 255, 255)`,
+              }}
+              className="heroimage-container"
+            >
+              <h1>HI</h1>
             </div>
           </div>
         );
