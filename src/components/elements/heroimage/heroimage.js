@@ -31,10 +31,6 @@ const Heroimage = ({ images, genres }) => {
       el: ".swiper-pagination",
       type: "progressbar",
     },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
   };
 
   return (

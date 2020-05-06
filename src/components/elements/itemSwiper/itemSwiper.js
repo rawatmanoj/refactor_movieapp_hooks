@@ -17,10 +17,10 @@ const ItemSwiper = ({ items }) => {
     slidesPerGroup: 3,
     loop: true,
     loopFillGroupWithBlank: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -28,27 +28,30 @@ const ItemSwiper = ({ items }) => {
   };
 
   return (
-    <Swiper {...params}>
-      {items
-        ? items.map((item) => {
-            if (item !== undefined && item !== null) {
-              return (
-                <div key={item.id} className="items-container">
-                  <div className="movies-container">
+    <div className="items-swiper-container">
+      <Swiper {...params}>
+        {items
+          ? items.map((item) => {
+              if (item !== undefined && item !== null) {
+                return (
+                  <div key={item.id} className="items-container">
                     <div
                       className="movies"
                       style={{
-                        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center center / cover no-repeat,
-                url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${item.poster_path}) center top / cover no-repeat rgb(255, 255, 255)`,
+                        background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center center / cover no-repeat`,
                       }}
-                    ></div>
+                    >
+                      <img
+                        src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${item.poster_path}`}
+                      ></img>
+                    </div>
                   </div>
-                </div>
-              );
-            }
-          })
-        : null}
-    </Swiper>
+                );
+              }
+            })
+          : null}
+      </Swiper>
+    </div>
   );
 };
 

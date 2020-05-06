@@ -5,6 +5,8 @@ const PopularMovies = ({ popularMovies }) => {
   return (
     <div clasname="itemSwiper-container">
       <ItemSwiper items={popularMovies} />
+      <ItemSwiper items={popularMovies} />
+      <ItemSwiper items={popularMovies} />
     </div>
   );
 };
