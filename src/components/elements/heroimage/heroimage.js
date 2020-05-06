@@ -41,24 +41,27 @@ const Heroimage = ({ images, genres }) => {
     <Swiper {...params}>
       {images
         ? images.map((photo) => {
-            const genre = getGenre(photo);
-            console.log(genre);
-            return (
-              <div key={photo.id} className="imagediv-container">
-                <div
-                  style={{
-                    background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center center / cover no-repeat, 
+            if (photo !== undefined && photo !== null) {
+              const genre = getGenre(photo);
+
+              return (
+                <div key={photo.id} className="imagediv-container">
+                  <div
+                    style={{
+                      background: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center center / cover no-repeat, 
                 url(${IMAGE_BASE_URL}${BACKDROP_SIZE}${photo.backdrop_path}) center top / cover no-repeat rgb(255, 255, 255)`,
-                  }}
-                  className="heroimage-container"
-                >
-                  <div className="heroimage-desc">
-                    <h1>{photo.title}</h1>
-                    <h2>{photo.vote_average} Rating</h2>
+                    }}
+                    className="heroimage-container"
+                  >
+                    <div className="heroimage-desc">
+                      <h1>{photo.title}</h1>
+                      <h2>{photo.vote_average} Rating</h2>
+                      {genre !== undefined ? <h2>{genre.name}</h2> : null}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })
         : null}
     </Swiper>

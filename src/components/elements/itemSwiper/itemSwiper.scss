@@ -1,0 +1,15 @@
+@import "../../Styles/variables";
+@import "../../Styles/_mixins.scss";
+
+.items-container {
+  width: 80%;
+  .movies-container {
+    color: white;
+    height: 25rem;
+
+    .movies {
+      height: 70%;
+      width: 100%;
+    }
+  }
+}

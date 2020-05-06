@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Header from "../elements/Header/header";
 import Heroimage from "../elements/heroimage/heroimage";
+import PopularMovies from "../elements/PopularMovies/PopularMovies";
 import axios from "axios";
-import {
-  API_URL,
-  API_KEY,
-  IMAGE_BASE_URL,
-  BACKDROP_SIZE,
-  POSTER_SIZE,
-} from "../../config";
+import { API_URL, API_KEY } from "../../config";
 
 const useSearch = (data) => {
   console.log(data);
@@ -36,7 +31,7 @@ const useHeroimage = () => {
       //console.log(genresList);
 
       const posterImages = res.data.results.filter((result, i) => {
-        if (i < 5 && result.backdrop_path !== null) {
+        if (i < 8 && result.backdrop_path !== null) {
           return result;
         }
       });
@@ -48,17 +43,39 @@ const useHeroimage = () => {
   return { Heroimage, genres };
 };
 
+function usePopularMovies() {
+  const [popularMovies, setPopularMovies] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios(
+        `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+      ).catch((err) => console.log(err));
+
+      const popularMoviesList = res.data.results.filter((result, i) => {
+        if (i < 8) {
+          return result;
+        }
+      });
+
+      setPopularMovies(popularMoviesList);
+    })();
+  }, []);
+  return popularMovies;
+}
+
 const Home = () => {
-  //const genres = getGenres();
   const images = useHeroimage().Heroimage;
   const genres = useHeroimage().genres;
 
-  //console.log(genres);
+  const popularMovies = usePopularMovies();
+  //console.log(popularMovies);
 
   return (
     <div className="home-container">
       <Header onSearch={useSearch} />
       {images ? <Heroimage images={images} genres={genres} /> : null}
+      <PopularMovies popularMovies={popularMovies} />
     </div>
   );
 };
