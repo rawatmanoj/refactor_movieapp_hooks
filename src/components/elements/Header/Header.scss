@@ -4,19 +4,19 @@
 .nav-container {
   width: 100%;
   background: $base-color;
-  height: 4.5rem;
+  height: 7.2rem;
   @include flex(row);
-  font-size: 16px;
+  font-size: 1.6rem;
 
   .nav-search {
-    width: 25rem;
-    height: 2.5rem;
+    width: 40rem;
+    height: 4rem;
     border: 0px;
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    border-bottom-left-radius: 28px;
-    border-bottom-right-radius: 28px;
-    padding-left: 15px;
+    border-top-left-radius: 2.8rem;
+    border-top-right-radius: 2.8rem;
+    border-bottom-left-radius: 2.8rem;
+    border-bottom-right-radius: 2.8rem;
+    padding-left: 1.5rem;
     caret-color: $base-color;
     font-size: 1em;
   }

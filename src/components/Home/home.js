@@ -49,7 +49,7 @@ function usePopularMovies() {
   useEffect(() => {
     (async () => {
       const res = await axios(
-        `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+        `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       ).catch((err) => console.log(err));
 
       const popularMoviesList = res.data.results.filter((result, i) => {
@@ -69,7 +69,7 @@ const Home = () => {
   const genres = useHeroimage().genres;
 
   const popularMovies = usePopularMovies();
-  //console.log(popularMovies);
+  console.log(images);
 
   return (
     <div className="home-container">
