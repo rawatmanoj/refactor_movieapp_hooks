@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Header from "../elements/Header/header";
 import Heroimage from "../elements/heroimage/heroimage";
 import PopularMovies from "../elements/PopularMovies/PopularMovies";
+import UpcomingMovies from "../elements/UpcomingMovies/UpcomingMovies";
+import NowPlaying from "../elements/NowPlaying/NowPlaying";
 import axios from "axios";
 import { API_URL, API_KEY } from "../../config";
 
@@ -64,18 +66,66 @@ function usePopularMovies() {
   return popularMovies;
 }
 
+function useUpcomingMovies() {
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios(
+        `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+      ).catch((err) => console.log(err));
+
+      // console.log(res);
+
+      const upcomingMoviesList = res.data.results.filter((result, i) => {
+        if (i < 8) {
+          return result;
+        }
+      });
+      setUpcomingMovies(upcomingMoviesList);
+    })();
+  }, []);
+  return upcomingMovies;
+}
+
+function useNowplayingMovies() {
+  const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios(
+        `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`
+      ).catch((err) => console.log(err));
+
+      // console.log(res);
+
+      const nowPlayingMoviesList = res.data.results.filter((result, i) => {
+        if (i < 8) {
+          return result;
+        }
+      });
+      setNowPlayingMovies(nowPlayingMoviesList);
+    })();
+  }, []);
+  return nowPlayingMovies;
+}
+
 const Home = () => {
   const images = useHeroimage().Heroimage;
   const genres = useHeroimage().genres;
 
   const popularMovies = usePopularMovies();
-  console.log(images);
+  const upcomingMovies = useUpcomingMovies();
+  const nowPlayingMovies = useNowplayingMovies();
+  //console.log(upcomingMovies);
 
   return (
     <div className="home-container">
       <Header onSearch={useSearch} />
       {images ? <Heroimage images={images} genres={genres} /> : null}
       <PopularMovies popularMovies={popularMovies} />
+      <UpcomingMovies upcomingMovies={upcomingMovies} />
+      <NowPlaying nowPlayingMovies={nowPlayingMovies} />
     </div>
   );
 };
