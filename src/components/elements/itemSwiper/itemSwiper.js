@@ -9,11 +9,20 @@ import {
 } from "../../../config";
 
 const ItemSwiper = ({ items, type }) => {
+  const renderMovieDesc = (title) => {
+    if (title.length < 45) {
+      return <h3>{title}</h3>;
+    } else {
+      let shrink = title.split(" ").splice(0, 3).join(" ");
+      return <h3>{shrink}</h3>;
+    }
+  };
   console.log(items);
   const params = {
     observer: true,
-    // slidesPerView: 5,
+    observeParents: true,
     // spaceBetween: 50,
+    rebuildOnUpdate: true,
     slidesPerGroup: 2,
     loop: true,
     loopFillGroupWithBlank: true,
@@ -58,12 +67,19 @@ const ItemSwiper = ({ items, type }) => {
           ? items.map((item) => {
               if (item !== undefined && item !== null) {
                 return (
-                  <div key={item.id} className="items-container">
-                    <div className="movies" style={{}}>
-                      <img
-                        alt="movie-image"
-                        src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${item.poster_path}`}
-                      ></img>
+                  <div>
+                    <div style={{ height: "2.2rem" }}></div>
+                    <div key={item.id} className="items-container">
+                      <div className="movies">
+                        <img
+                          className="movies-img"
+                          alt="movie-image"
+                          src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${item.poster_path}`}
+                        ></img>
+                      </div>
+                    </div>
+                    <div className="movie-desc">
+                      {renderMovieDesc(item.title)}
                     </div>
                   </div>
                 );

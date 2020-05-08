@@ -4,7 +4,9 @@
 .items-swiper-container {
   margin-left: 17rem;
   margin-right: 17rem;
-  margin-top: 10rem;
+  margin-top: 8rem;
+  margin-bottom: auto;
+
   .desc-type {
     color: white;
     font-size: 3rem;
@@ -13,21 +15,30 @@
   }
   .items-container {
     color: white;
-    width: 100%;
-    .movies {
-      height: 19rem;
-      width: 12.6rem;
-      border-radius: 0.5rem;
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6))
-        center center / cover no-repeat;
 
-      img {
+    .movies {
+      z-index: 1;
+      height: 18.9rem;
+      width: 12.6rem;
+      border-radius: 0.4rem;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) center
+        center / cover no-repeat;
+
+      .movies-img {
+        position: relative;
+        display: block;
         z-index: -10;
-        border-radius: 0.5rem;
+        border-radius: 0.8rem;
         max-width: 12.6rem;
-        max-height: 19rem;
+        max-height: 19.2rem;
       }
     }
+  }
+  .movie-desc {
+    width: 12.6rem;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: $font-Lato;
   }
 }
 

@@ -3,4 +3,10 @@
   //   width: 100%;
   min-height: 100vh;
   background: $primary-color;
+
+  .home-movie-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }

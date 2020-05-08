@@ -3,7 +3,7 @@ import ItemSwiper from "../itemSwiper/itemSwiper";
 import "./PopularMovies.scss";
 const PopularMovies = ({ popularMovies }) => {
   return (
-    <div clasname="PopularitemSwiper-container">
+    <div clasname="">
       <ItemSwiper type={"Popular"} items={popularMovies} />
     </div>
   );

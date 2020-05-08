@@ -3,7 +3,7 @@ import ItemSwiper from "../itemSwiper/itemSwiper";
 
 const NowPlaying = ({ nowPlayingMovies }) => {
   return (
-    <div className="UpcomingitemSwiper-container">
+    <div className="">
       <ItemSwiper type={"Now Playing"} items={nowPlayingMovies} />
     </div>
   );

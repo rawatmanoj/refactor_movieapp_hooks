@@ -4,6 +4,7 @@ import Heroimage from "../elements/heroimage/heroimage";
 import PopularMovies from "../elements/PopularMovies/PopularMovies";
 import UpcomingMovies from "../elements/UpcomingMovies/UpcomingMovies";
 import NowPlaying from "../elements/NowPlaying/NowPlaying";
+import TopRated from "../elements/TopRatedMovies/TopRatedMovies";
 import axios from "axios";
 import { API_URL, API_KEY } from "../../config";
 
@@ -110,6 +111,28 @@ function useNowplayingMovies() {
   return nowPlayingMovies;
 }
 
+function useTopRatedMovies() {
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const res = await axios(
+        `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+      ).catch((err) => console.log(err));
+
+      // console.log(res);
+
+      const topRatedMoviesList = res.data.results.filter((result, i) => {
+        if (i < 8) {
+          return result;
+        }
+      });
+      setTopRatedMovies(topRatedMoviesList);
+    })();
+  }, []);
+  return topRatedMovies;
+}
+
 const Home = () => {
   const images = useHeroimage().Heroimage;
   const genres = useHeroimage().genres;
@@ -117,15 +140,19 @@ const Home = () => {
   const popularMovies = usePopularMovies();
   const upcomingMovies = useUpcomingMovies();
   const nowPlayingMovies = useNowplayingMovies();
+  const topRatedMovies = useTopRatedMovies();
   //console.log(upcomingMovies);
 
   return (
     <div className="home-container">
       <Header onSearch={useSearch} />
       {images ? <Heroimage images={images} genres={genres} /> : null}
-      <PopularMovies popularMovies={popularMovies} />
-      <UpcomingMovies upcomingMovies={upcomingMovies} />
-      <NowPlaying nowPlayingMovies={nowPlayingMovies} />
+      <div className="home-movie-list">
+        <PopularMovies popularMovies={popularMovies} />
+        <UpcomingMovies upcomingMovies={upcomingMovies} />
+        <NowPlaying nowPlayingMovies={nowPlayingMovies} />
+        <TopRated topRatedMovies={topRatedMovies} />
+      </div>
     </div>
   );
 };
