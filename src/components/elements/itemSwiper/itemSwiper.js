@@ -67,8 +67,8 @@ const ItemSwiper = ({ items, type }) => {
           ? items.map((item) => {
               if (item !== undefined && item !== null) {
                 return (
-                  <div>
-                    <div style={{ height: "2.2rem" }}></div>
+                  <div className="hover-item">
+                    <div style={{ height: "3.9rem" }}></div>
                     <div key={item.id} className="items-container">
                       <div className="movies">
                         <img
@@ -87,6 +87,7 @@ const ItemSwiper = ({ items, type }) => {
             })
           : null}
       </Swiper>
+      <hr className="swiper-separator"></hr>
     </div>
   );
 };

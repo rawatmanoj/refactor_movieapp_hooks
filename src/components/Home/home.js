@@ -145,7 +145,10 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Header onSearch={useSearch} />
+      <div className="fixed-header">
+        <Header onSearch={useSearch} />
+      </div>
+
       {images ? <Heroimage images={images} genres={genres} /> : null}
       <div className="home-movie-list">
         <PopularMovies popularMovies={popularMovies} />

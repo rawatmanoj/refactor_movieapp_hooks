@@ -1,6 +1,14 @@
 @import "../../Styles/variables";
 @import "../../Styles/_mixins.scss";
 
+.hover-item {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-item:hover {
+  transform: scale(1.1);
+}
+
 .items-swiper-container {
   margin-left: 17rem;
   margin-right: 17rem;
@@ -11,7 +19,6 @@
     color: white;
     font-size: 3rem;
     font-family: $font-AlegreyaSans;
-    padding-bottom: 1.7rem;
   }
   .items-container {
     color: white;
@@ -33,12 +40,26 @@
         max-height: 19.2rem;
       }
     }
+
+    .movies:hover {
+      background: none;
+    }
   }
   .movie-desc {
     width: 12.6rem;
     font-size: 1.2rem;
     color: rgba(255, 255, 255, 0.9);
     font-family: $font-Lato;
+  }
+
+  .swiper-separator {
+    border: none;
+    height: 2px;
+    background: radial-gradient(
+      circle,
+      rgba(210, 208, 208, 0.190914) 0%,
+      rgba(210, 208, 208, 0) 90%
+    );
   }
 }
 

@@ -3,7 +3,14 @@
   //   width: 100%;
   min-height: 100vh;
   background: $primary-color;
-
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    z-index: 100;
+  }
   .home-movie-list {
     display: flex;
     flex-direction: column;
