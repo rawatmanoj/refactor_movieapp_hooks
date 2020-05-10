@@ -67,9 +67,9 @@ const ItemSwiper = ({ items, type }) => {
           ? items.map((item) => {
               if (item !== undefined && item !== null) {
                 return (
-                  <div className="hover-item">
+                  <div key={item.id} className="hover-item">
                     <div style={{ height: "3.9rem" }}></div>
-                    <div key={item.id} className="items-container">
+                    <div className="items-container">
                       <div className="movies">
                         <img
                           className="movies-img"

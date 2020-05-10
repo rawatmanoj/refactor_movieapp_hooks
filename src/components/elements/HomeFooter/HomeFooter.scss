@@ -1,0 +1,8 @@
+@import "../../Styles/variables";
+@import "../../Styles/_mixins.scss";
+
+.homefooter-container {
+  width: 100%;
+  height: 25rem;
+  background: $footer-color;
+}
