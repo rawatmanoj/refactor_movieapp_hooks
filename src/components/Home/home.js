@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../elements/Header/header";
 import Heroimage from "../elements/heroimage/heroimage";
 import PopularMovies from "../elements/PopularMovies/PopularMovies";
@@ -117,6 +117,7 @@ function useTopRatedMovies() {
 
 const Home = () => {
   const [search, setSearch] = useState(null);
+  const [searchData, setSearchData] = useState("");
 
   const useSearch = async (data) => {
     const res = await axios(
@@ -124,6 +125,7 @@ const Home = () => {
     );
 
     setSearch(res);
+    setSearchData(data);
     return search;
   };
 
@@ -134,7 +136,7 @@ const Home = () => {
   const upcomingMovies = useUpcomingMovies();
   const nowPlayingMovies = useNowplayingMovies();
   const topRatedMovies = useTopRatedMovies();
-  console.log(search);
+  // console.log(search);
 
   return (
     <div className="home-container">
@@ -154,7 +156,7 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <SearchItems />
+        <SearchItems searchs={search} searchData={searchData} />
       )}
     </div>
   );
