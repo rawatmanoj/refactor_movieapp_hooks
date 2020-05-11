@@ -1,20 +1,12 @@
 import React from "react";
-import axios from "axios";
 import Swiper from "react-id-swiper";
 import "./heroimage.scss";
-import {
-  API_URL,
-  API_KEY,
-  IMAGE_BASE_URL,
-  BACKDROP_SIZE,
-} from "../../../config";
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../../config";
 
 const Heroimage = ({ images, genres }) => {
   const getGenre = (photo) => {
     const genre = genres.find((genre) => {
-      if (genre.id == photo.genre_ids[0]) {
-        return genre;
-      }
+      return genre.id === photo.genre_ids[0];
     });
 
     return genre;
@@ -34,10 +26,11 @@ const Heroimage = ({ images, genres }) => {
   };
 
   return (
-    <Swiper {...params}>
-      {images
-        ? images.map((photo) => {
-            if (photo !== undefined && photo !== null) {
+    <div className="heroimage-container">
+      <Swiper {...params}>
+        {images
+          ? images.map((photo) => {
+              // if (photo !== undefined && photo !== null) {
               const genre = getGenre(photo);
 
               return (
@@ -57,11 +50,12 @@ const Heroimage = ({ images, genres }) => {
                   </div>
                 </div>
               );
-            }
-          })
-        : null}
-    </Swiper>
+              // }
+            })
+          : null}
+      </Swiper>
+    </div>
   );
 };
 
-export default Heroimage;
+export default React.memo(Heroimage);

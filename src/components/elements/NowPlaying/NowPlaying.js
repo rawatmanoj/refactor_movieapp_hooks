@@ -9,4 +9,4 @@ const NowPlaying = ({ nowPlayingMovies }) => {
   );
 };
 
-export default NowPlaying;
+export default React.memo(NowPlaying);

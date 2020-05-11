@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Header from "../elements/Header/header";
 import Heroimage from "../elements/heroimage/heroimage";
 import PopularMovies from "../elements/PopularMovies/PopularMovies";
@@ -30,40 +30,19 @@ const useHeroimage = () => {
 
       setGenre(genresList);
       //console.log(genresList);
-
-      const posterImages = res.data.results.filter((result, i) => {
-        if (i < 8 && result.backdrop_path !== null) {
+      const posterImages = () => {
+        const images = res.data.results.filter((result, i) => {
           return result;
-        }
-      });
-      console.log(res);
+        });
+
+        return images;
+      };
 
       setHeroimage(posterImages);
     })();
   }, []);
   return { Heroimage, genres };
 };
-
-function usePopularMovies() {
-  const [popularMovies, setPopularMovies] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const res = await axios(
-        `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-      ).catch((err) => console.log(err));
-
-      const popularMoviesList = res.data.results.filter((result, i) => {
-        if (i < 8) {
-          return result;
-        }
-      });
-
-      setPopularMovies(popularMoviesList);
-    })();
-  }, []);
-  return popularMovies;
-}
 
 function useUpcomingMovies() {
   const [upcomingMovies, setUpcomingMovies] = useState([]);
@@ -74,13 +53,14 @@ function useUpcomingMovies() {
         `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
       ).catch((err) => console.log(err));
 
-      // console.log(res);
-
-      const upcomingMoviesList = res.data.results.filter((result, i) => {
-        if (i < 8) {
+      const upcomingMoviesList = () => {
+        const list = res.data.results.filter((result, i) => {
           return result;
-        }
-      });
+        });
+
+        return list;
+      };
+
       setUpcomingMovies(upcomingMoviesList);
     })();
   }, []);
@@ -98,11 +78,14 @@ function useNowplayingMovies() {
 
       // console.log(res);
 
-      const nowPlayingMoviesList = res.data.results.filter((result, i) => {
-        if (i < 8) {
+      const nowPlayingMoviesList = () => {
+        const list = res.data.results.filter((result, i) => {
           return result;
-        }
-      });
+        });
+
+        return list;
+      };
+
       setNowPlayingMovies(nowPlayingMoviesList);
     })();
   }, []);
@@ -118,38 +101,36 @@ function useTopRatedMovies() {
         `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       ).catch((err) => console.log(err));
 
-      // console.log(res);
-
-      const topRatedMoviesList = res.data.results.filter((result, i) => {
-        if (i < 8) {
+      const topRatedMoviesList = () => {
+        const list = res.data.results.filter((result, i) => {
           return result;
-        }
-      });
+        });
+
+        return list;
+      };
+
       setTopRatedMovies(topRatedMoviesList);
     })();
   }, []);
   return topRatedMovies;
 }
 
-const Home = (props) => {
-  const [search, setSearch] = useState([]);
+const Home = () => {
+  const [search, setSearch] = useState(null);
 
   const useSearch = async (data) => {
-    // console.log(data);
-
     const res = await axios(
-      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${data.name}&page=1&include_adult=true`
-      //`${API_URL}${data.name}/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=true`
+      `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&query=${data.name}&page=1&include_adult=true`
     );
 
     setSearch(res);
     return search;
   };
-  console.log(props);
-  const images = useHeroimage().Heroimage;
-  const genres = useHeroimage().genres;
 
-  const popularMovies = usePopularMovies();
+  const res = useHeroimage();
+  const images = res.Heroimage;
+  const genres = res.genres;
+
   const upcomingMovies = useUpcomingMovies();
   const nowPlayingMovies = useNowplayingMovies();
   const topRatedMovies = useTopRatedMovies();
@@ -160,12 +141,12 @@ const Home = (props) => {
       <div className="fixed-header">
         <Header onSearch={useSearch} />
       </div>
-      {search == [] ? (
+      {search === null ? (
         <div>
           {images ? <Heroimage images={images} genres={genres} /> : null}
 
           <div className="home-movie-list">
-            <PopularMovies popularMovies={popularMovies} />
+            <PopularMovies popularMovies={images} />
             <UpcomingMovies upcomingMovies={upcomingMovies} />
             <NowPlaying nowPlayingMovies={nowPlayingMovies} />
             <TopRated topRatedMovies={topRatedMovies} />

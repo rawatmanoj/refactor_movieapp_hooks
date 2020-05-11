@@ -9,4 +9,4 @@ const TopRatedMovies = ({ topRatedMovies }) => {
   );
 };
 
-export default TopRatedMovies;
+export default React.memo(TopRatedMovies);

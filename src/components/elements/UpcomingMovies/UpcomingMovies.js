@@ -10,4 +10,4 @@ const UpcomingMovies = ({ upcomingMovies }) => {
   );
 };
 
-export default UpcomingMovies;
+export default React.memo(UpcomingMovies);

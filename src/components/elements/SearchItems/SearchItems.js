@@ -1,6 +1,7 @@
 import React from "react";
 
-const SearchItems = () => {
+const SearchItems = ({ search }) => {
+  console.log(search);
   return <div>SearchItems</div>;
 };
 

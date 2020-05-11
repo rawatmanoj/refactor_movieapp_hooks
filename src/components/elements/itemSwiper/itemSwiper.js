@@ -1,12 +1,7 @@
 import React from "react";
 import Swiper from "react-id-swiper";
 import "./itemSwiper.scss";
-import {
-  API_URL,
-  API_KEY,
-  IMAGE_BASE_URL,
-  BACKDROP_SIZE,
-} from "../../../config";
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from "../../../config";
 
 const ItemSwiper = ({ items, type }) => {
   const renderMovieDesc = (title) => {
@@ -17,7 +12,7 @@ const ItemSwiper = ({ items, type }) => {
       return <h3>{shrink}</h3>;
     }
   };
-  console.log(items);
+  // console.log(items);
   const params = {
     observer: true,
     observeParents: true,
@@ -65,25 +60,25 @@ const ItemSwiper = ({ items, type }) => {
       <Swiper {...params}>
         {items
           ? items.map((item) => {
-              if (item !== undefined && item !== null) {
-                return (
-                  <div key={item.id} className="hover-item">
-                    <div style={{ height: "3.9rem" }}></div>
-                    <div className="items-container">
-                      <div className="movies">
-                        <img
-                          className="movies-img"
-                          alt="movie-image"
-                          src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${item.poster_path}`}
-                        ></img>
-                      </div>
-                    </div>
-                    <div className="movie-desc">
-                      {renderMovieDesc(item.title)}
+              // if (item !== undefined && item !== null) {
+              return (
+                <div key={item.id} className="hover-item">
+                  <div style={{ height: "3.9rem" }}></div>
+                  <div className="items-container">
+                    <div className="movies">
+                      <img
+                        className="movies-img"
+                        alt="movie"
+                        src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${item.poster_path}`}
+                      ></img>
                     </div>
                   </div>
-                );
-              }
+                  <div className="movie-desc">
+                    {renderMovieDesc(item.title)}
+                  </div>
+                </div>
+              );
+              // }
             })
           : null}
       </Swiper>

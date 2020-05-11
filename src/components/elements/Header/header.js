@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./search";
-const header = ({ onSearch }) => {
+const Header = ({ onSearch }) => {
   const onSubmit = (data) => {
     onSearch(data);
   };
@@ -12,4 +12,4 @@ const header = ({ onSearch }) => {
   );
 };
 
-export default header;
+export default React.memo(Header);

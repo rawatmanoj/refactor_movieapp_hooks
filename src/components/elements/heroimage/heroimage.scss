@@ -1,26 +1,30 @@
 @import "../../Styles/variables";
 @import "../../Styles/_mixins.scss";
 
-.imagediv-container {
-  margin-bottom: 10rem;
-  .heroimage-container {
-    color: white;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+.heroimage-container {
+  padding-top: 7.2rem;
 
-    .heroimage-desc {
-      font-size: 1.5rem;
-      margin-top: auto;
-      margin-left: 10rem;
-      font-family: $font-RobotoSlab;
-      .h1 {
-        margin: 0px;
-        padding: 0px;
-      }
+  .imagediv-container {
+    margin-bottom: 10rem;
+    .heroimage-container {
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
 
-      .h2 {
-        font-family: $font-Lato;
+      .heroimage-desc {
+        font-size: 1.5rem;
+        margin-top: auto;
+        margin-left: 10rem;
+        font-family: $font-RobotoSlab;
+        .h1 {
+          margin: 0px;
+          padding: 0px;
+        }
+
+        .h2 {
+          font-family: $font-Lato;
+        }
       }
     }
   }

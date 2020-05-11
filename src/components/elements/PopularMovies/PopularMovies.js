@@ -9,4 +9,4 @@ const PopularMovies = ({ popularMovies }) => {
   );
 };
 
-export default PopularMovies;
+export default React.memo(PopularMovies);
