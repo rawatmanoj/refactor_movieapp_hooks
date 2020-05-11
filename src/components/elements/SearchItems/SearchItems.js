@@ -7,6 +7,7 @@ const SearchItems = ({ searchs, searchData }) => {
       <div className="search-header">
         <h2>Search Results for {searchData.name}</h2>
       </div>
+      <hr></hr>
       <div className="searchwrapper-container">
         {searchs.data.results.map((item) => {
           return item.poster_path ? (

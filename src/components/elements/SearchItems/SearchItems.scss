@@ -1,6 +1,8 @@
 @import "../../Styles/variables";
 .searchitem-container {
+  //   min-height: 100rem;
   padding-top: 7.2rem;
+  padding-bottom: 7.2rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,13 +12,27 @@
   .search-header {
     padding-top: 8rem;
     font-size: 2rem;
-    margin: auto;
+
     color: white;
     font-family: $font-RobotoSlab;
   }
 
+  hr {
+    border-color: #966bb4;
+    margin: 2rem auto 3rem;
+    width: 18rem;
+    display: block;
+    unicode-bidi: isolate;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 0.119rem;
+  }
+
   .searchwrapper-container {
-    min-height: 1000px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -26,16 +42,17 @@
     margin: auto;
 
     .searchwrap-box {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
+      //   display: flex;
+      //   flex-direction: row;
+      //   flex-wrap: wrap;
       margin: 3.5rem;
       width: 15rem;
       height: 21.6rem;
-
+      margin-top: 5rem;
       .search-image {
-        width: 100%;
-        height: 100%;
+        width: 13rem;
+        height: auto;
+        border-radius: 1rem;
       }
       .search-title {
         font-size: 1.5rem;
